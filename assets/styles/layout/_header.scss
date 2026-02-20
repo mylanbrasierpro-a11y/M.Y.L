@@ -1,0 +1,31 @@
+header{
+    background: #20202B;
+    color: white;
+    display: flex;
+    width: 140px;         
+    height: 100vh;            
+    position: fixed;           
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+    padding: 0;
+    gap: 20px;
+     ul{
+        margin: 0%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+            li {
+                list-style-type: none;
+                a{
+                    color: #F5F0F0;
+                }
+                img{
+        width: 50px;
+        height: 50px;
+        }
+            }
+    }
+}
