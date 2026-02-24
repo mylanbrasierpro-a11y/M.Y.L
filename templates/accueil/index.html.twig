@@ -13,6 +13,7 @@
             {% for post in posts %}
             <div class="card">
                 <div>
+                    <img src="{{ asset('uploads/images/' ~ post.imageName) }}" alt="Image du post">
                     <h2>{{ post.title }}</h2>
                     <p>{{ post.body }}</p>
                 </div>
