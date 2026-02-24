@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AddController!{% endblock %}
+{% block title %}Hello InscriptionController!{% endblock %}
 
 {% block body %}
     <div class='inscription'>
         <div class='form-inscription'>
             <h1>Inscription</h1>
-                {{form_start(addpost)}}
-                {{form_widget(addpost)}}
+                {{form_start(inscription)}}
+                {{form_widget(inscription)}}
                 <button>Ajouter</button>
-            {{ form_end(addpost)}}
+            {{ form_end(inscription)}}
         </div>
     </div>
 {% endblock %}

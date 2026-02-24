@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\PostsRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
 class Posts
 {
@@ -19,6 +23,18 @@ class Posts
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $body = null;
+
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+    
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -47,5 +63,39 @@ class Posts
         $this->body = $body;
 
         return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+       public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updateAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
     }
 }
