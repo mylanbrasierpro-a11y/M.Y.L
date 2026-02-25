@@ -28,6 +28,7 @@ class AddpostType extends AbstractType
                             'image/gif',
                             'image/jpg',
                             'image/webp',
+                            'image/webp',
 
 
                         ],
@@ -36,7 +37,6 @@ class AddpostType extends AbstractType
                 ]
             ]);
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

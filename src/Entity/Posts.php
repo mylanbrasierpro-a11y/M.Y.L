@@ -35,7 +35,7 @@ class Posts
     
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $user = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -81,7 +81,7 @@ class Posts
         $this->imageFile = $imageFile;
 
         if ($imageFile) {
-            $this->updateAt = new \DateTimeImmutable();
+            $this->updatedAt = new \DateTimeImmutable();
         }
     }
 

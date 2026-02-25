@@ -17,16 +17,21 @@
         <header>
             <ul>
                 <li><a href="{{ path('app_accueil') }}"><img src="{{asset('img/home.png')}}" alt=""></a></li>
-                <li><a href="{{ path('app_messagerie') }}"><img src="{{asset('img/send.png')}}" alt=""></a></li>
                 <li><a href="{{ path('app_search') }}"><img src="{{asset('img/search.png')}}" alt=""></a></li>
                 <li><a href="{{ path('app_hommage') }}"><img src="{{asset('img/hommage.png')}}" alt=""></a></li>
-                <li><a href="{{ path('app_profil') }}"><img src="{{asset('img/profil.png')}}" alt =""></a></li>
-                <li><a href="{{ path('app_addpost') }}"><img src="{{asset('img/add.png')}}" alt =""></a></li>
+                {% if not is_granted('ROLE_USER')%}
+                    <li><a href="{{ path('app_login') }}"><img src="{{asset('img/login.png')}}" alt=""></a></li>
+                    <li><a href="{{ path('inscription') }}"><img src="{{asset('img/register.png')}}" alt=""></a></li>
+                {% endif %}
+                {% if is_granted('ROLE_USER')%}
+                    <li><a href="{{ path('app_messagerie') }}"><img src="{{asset('img/send.png')}}" alt=""></a></li>
+                    <li><a href="{{ path('app_profil') }}"><img src="{{asset('img/profil.png')}}" alt =""></a></li>
+                    <li><a href="{{ path('app_addpost') }}"><img src="{{asset('img/add.png')}}" alt =""></a></li>
+                    <li><a href="{{ path('app_logout') }}"><img src="{{asset('img/logout.png')}}" alt =""></a></li>
+                {% endif %}                
             </ul>
         </header>
         <div class='sous-body'>
-        
-        
             {% block body %}{% endblock %}
         </div>
     </body>
