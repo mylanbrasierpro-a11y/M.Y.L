@@ -28,7 +28,7 @@ class AddpostType extends AbstractType
                             'image/gif',
                             'image/jpg',
                             'image/webp',
-                            'image/webp',
+                            'image/png',
 
 
                         ],

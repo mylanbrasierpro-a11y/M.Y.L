@@ -76,7 +76,7 @@ class Posts
 
         return $this;
     }
-       public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
@@ -98,4 +98,5 @@ class Posts
     {
         return $this->imageName;
     }
+    
 }

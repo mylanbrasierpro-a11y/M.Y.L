@@ -8,15 +8,21 @@
             <h1>Gallery !</h1>
         </div>
     </section>
-    <section>
+    <section class="posts">
         <div class="boucle">
             {% for post in posts %}
             <div class="card">
                 <div>
-                    <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
                     <h2>{{ post.title }}</h2>
+                    <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
                     <p>{{ post.body }}</p>
                     <a href="{{ path('update_article', {'id': post.id}) }}">Modifier</a>
+                    <form method="POST" onsubmit="return confirm('Confirmer la suppression?')"
+                        action="{{ path('delete_article', {'id': post.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ post.id) }}">
+                        <input id="delete" type="submit" value="Supprimer">
+                    </form>
                 </div>
             </div> 
             {% endfor %}

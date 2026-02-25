@@ -42,5 +42,15 @@ final class AccueilController extends AbstractController
             'update' =>$form->createView(),
         ]);
          
-}
+        }
+        #[Route('/suppr/article/{id}', name: 'delete_article')]
+        public function delete(Posts $posts, Request $request, EntityManagerInterface $entityManager): Response
+        {
+            if ($this->isCsrfTokenValid("SUP" . $posts->getId(), $request->get('_token'))) {
+                $entityManager->remove($posts);
+                $entityManager->flush();
+                $this->addFlash("success", "La suppression a été effectuée");
+                return $this->redirectToRoute("app_accueil");
+            }
+        }
 }
