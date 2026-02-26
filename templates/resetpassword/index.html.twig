@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ResetpasswordController!{% endblock %}
+
+{% block body %}
+    <div>
+        <div class='form-inscription'>
+            <h1>Réinitialisation du mot de passe</h1>
+                {{form_start(controller_name)}}
+                {{form_widget(controller_name)}}
+                <button>Réinitialiser</button>
+            {{ form_end(controller_name)}}
+        </div>
+    </div>
+{% endblock %}

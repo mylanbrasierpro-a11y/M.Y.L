@@ -7,7 +7,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Attribute as Vich;
 
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
@@ -98,5 +98,8 @@ class Posts
     {
         return $this->imageName;
     }
-    
+    public function isResetTokenValid(): bool
+    {
+        return $this->resetTokenExpiresAt && $this->resetTokenExpiresAt > new \DateTime();
+    }
 }
