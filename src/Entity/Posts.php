@@ -98,6 +98,16 @@ class Posts
     {
         return $this->imageName;
     }
+
+
+     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
     public function isResetTokenValid(): bool
     {
         return $this->resetTokenExpiresAt && $this->resetTokenExpiresAt > new \DateTime();

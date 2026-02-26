@@ -42,6 +42,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Posts::class, mappedBy: 'user')]
     private Collection $posts;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resetToken = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $resetTokenExpiresAt = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -169,24 +175,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-     public function getResetToken(): ?string
+   public function isResetTokenValid(): bool
+    {
+        return $this->resetTokenExpiresAt && $this->resetTokenExpiresAt > new \DateTime();
+    }
+
+    public function getResetToken(): ?string
     {
         return $this->resetToken;
     }
-        public function setResetToken(?string $resetToken): self
+
+    public function setResetToken(?string $resetToken): static
     {
         $this->resetToken = $resetToken;
+
         return $this;
     }
 
-    public function getResetTokenRequestedAt(): ?\DateTimeInterface
+    public function getResetTokenExpiresAt(): ?\DateTime
     {
-        return $this->resetTokenRequestedAt;
+        return $this->resetTokenExpiresAt;
     }
 
-    public function setResetTokenRequestedAt(?\DateTimeInterface $date): self
+    public function setResetTokenExpiresAt(?\DateTime $resetTokenExpiresAt): static
     {
-        $this->resetTokenRequestedAt = $date;
+        $this->resetTokenExpiresAt = $resetTokenExpiresAt;
+
         return $this;
     }
 }

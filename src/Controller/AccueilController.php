@@ -38,7 +38,7 @@ final class AccueilController extends AbstractController
 
         return $this->redirectToRoute('app_accueil');
     }
-        return $this->render('update/index.html.twig', [
+        return $this->render('updatepost/index.html.twig', [
             'update' =>$form->createView(),
         ]);
          

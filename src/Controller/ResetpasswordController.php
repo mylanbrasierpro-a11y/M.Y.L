@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Uid\Uuid;
 use App\Form\NewpasswordType;
 use App\Form\ResetpasswordType;
 use App\Repository\UserRepository;
@@ -13,7 +14,8 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Uid\Uuid;
+
+
 
 final class ResetpasswordController extends AbstractController
 {

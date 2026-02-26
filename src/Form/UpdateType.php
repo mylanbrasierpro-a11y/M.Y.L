@@ -2,11 +2,14 @@
 
 namespace App\Form;
 
+
 use App\Entity\Posts;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UpdateType extends AbstractType
@@ -16,13 +19,9 @@ class UpdateType extends AbstractType
         $builder
             ->add('title')
             ->add('body')
-            ->add('imageName')
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
+            ->add('imageFile', FileType::class,[
+                'required' => false,
+                'mapped' => true,
             ])
         ;
     }
