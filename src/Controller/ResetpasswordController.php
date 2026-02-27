@@ -68,7 +68,7 @@ final class ResetpasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $Password = $form->get('plainPassword')->getData();
-            $hashedPassword = PasswordHasher($Password, PASSWORD_BCRYPT);
+            $hashedPassword = password_hash($Password, PASSWORD_BCRYPT);
             $user->setPassword($hashedPassword);
 
             $user->setResetToken(null);
@@ -81,8 +81,7 @@ final class ResetpasswordController extends AbstractController
         }
 
         return $this->render('resetpassword/newpassword.html.twig', [
-            'controller_name' => 'ResetpasswordController',
-            'form' => $form->createView(),
+            'Newpassword' => $form->createView(),
         ]);
     }   
 }
