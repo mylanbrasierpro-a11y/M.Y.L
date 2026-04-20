@@ -1,7 +1,9 @@
- body {
+@use '../abstracts/variables' as v;
+
+body {
       display: flex;
       margin: 0;
-      background-color: #323339;
+      background-color: v.$primary-color;
 }
 .sous-body{
       padding-left: 10rem;
