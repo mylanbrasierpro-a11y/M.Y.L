@@ -1,7 +1,6 @@
 @use '../abstracts/variables' as v;
 
 body {
-      display: flex;
       margin: 0;
       background-color: v.$primary-color;
 }
