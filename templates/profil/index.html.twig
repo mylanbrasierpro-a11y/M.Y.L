@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
-
+    <section>
+        <div>
+            <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image de profil">        
+        </div>
+    </section>
 {% endblock %}

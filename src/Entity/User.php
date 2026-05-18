@@ -48,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTime $resetTokenExpiresAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $img_profil = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -200,6 +203,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResetTokenExpiresAt(?\DateTime $resetTokenExpiresAt): static
     {
         $this->resetTokenExpiresAt = $resetTokenExpiresAt;
+
+        return $this;
+    }
+
+    public function getImgProfil(): ?string
+    {
+        return $this->img_profil;
+    }
+
+    public function setImgProfil(string $img_profil): static
+    {
+        $this->img_profil = $img_profil;
 
         return $this;
     }

@@ -32,8 +32,7 @@ final class InscriptionController extends AbstractController
 
             $entityManager->flush();
 
-            $this->addFlash('success', 'User ajouté avec succés !');
-
+            $this->addFlash('success', 'Utilisateur ajouté avec succés !');
             
 
             return $this->redirectToRoute('app_accueil');

@@ -52,5 +52,5 @@ final class AccueilController extends AbstractController
                 $this->addFlash("success", "La suppression a été effectuée");
                 return $this->redirectToRoute("app_accueil");
             }
-        }
+    }
 }
