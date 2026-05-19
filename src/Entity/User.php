@@ -6,9 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -48,9 +51,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTime $resetTokenExpiresAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $img_profil = null;
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imgProfil')]
+    private ?File $imageFile = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $imgProfil = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -207,15 +215,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getImgProfil(): ?string
+public function setImageFile(?File $imageFile = null): void
     {
-        return $this->img_profil;
+        $this->imageFile = $imageFile;
+        if ($imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
-    public function setImgProfil(string $img_profil): static
+    public function getImageFile(): ?File
     {
-        $this->img_profil = $img_profil;
+        return $this->imageFile;
+    }
 
-        return $this;
+    public function getImgProfil(): ?string
+    {
+        return $this->imgProfil;
+    }
+
+    public function setImgProfil(?string $imgProfil): void
+    {
+        $this->imgProfil = $imgProfil;
     }
 }

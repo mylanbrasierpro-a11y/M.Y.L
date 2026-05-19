@@ -4,8 +4,31 @@
 
 {% block body %}
     <section>
+        <p>Bienvenue sur votre profil, {{ user.username }}!</p>
         <div>
-            <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image de profil">        
+            <img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="Image de profil">        
         </div>
+       <div class="boucle">
+                {% for post in posts %}
+                <div class="card">
+                    <div>
+                        <h2>{{ post.title }}</h2>
+                        <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
+                        <p><span class="text-meta">{{ post.user.username }} :</span> {{ post.body }}</p>
+                        {% if is_granted('ROLE_USER')%}
+                                {% if app.user.id == post.user.id %}
+                                <a href="{{ path('update_article', {'id': post.id}) }}">Modifier</a>
+                                <form method="POST" onsubmit="return confirm('Confirmer la suppression?')"
+                                    action="{{ path('delete_article', {'id': post.id}) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ post.id) }}">
+                                    <input id="delete" type="submit" value="Supprimer">
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div> 
+                {% endfor %}
+            </div>
     </section>
 {% endblock %}
