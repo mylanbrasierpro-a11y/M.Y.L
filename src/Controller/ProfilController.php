@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Posts;
+use App\Entity\User;
 use App\Form\UpdateType;
+use App\Form\UpdateuserType;
 use App\Repository\PostsRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -18,8 +21,7 @@ final class ProfilController extends AbstractController
 public function index(Security $security, PostsRepository $postrepository): Response
     {
         $user = $security->getUser();
-        $posts = $postrepository->findBy(['user' => $user]); // posts de l'utilisateur connecté
-        // ou findAll() si tu veux tous les posts
+        $posts = $postrepository->findBy(['user' => $user]); 
 
         return $this->render('profil/index.html.twig', [
             'user' => $user,
@@ -60,4 +62,28 @@ public function index(Security $security, PostsRepository $postrepository): Resp
                 return $this->redirectToRoute("app_accueil");
             }
     }
+
+    #[Route('/updateuser/{id}', name:'update_user')]
+
+    public function modifyuser(User $user ,UserRepository $userrepository, Request $request, EntityManagerInterface $entityManager ): Response
+    {
+    $form = $this->createForm(UpdateuserType::class, $user);
+
+    $form->handleRequest($request);
+
+    if($form->isSubmitted() && $form->isValid()){
+
+        $entityManager->persist($user);
+
+        $entityManager->flush();
+
+        $this->addFlash('success', ' Le profil a été modifié avec succés !');
+
+        return $this->redirectToRoute('app_accueil');
+    }
+        return $this->render('updateuser/index.html.twig', [
+            'updateuser' =>$form->createView(),
+        ]);
+         
+        }
 }

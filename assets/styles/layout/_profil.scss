@@ -1,0 +1,18 @@
+
+.profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    p{
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .avatar img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #c89b3c44;
+    }
+}
