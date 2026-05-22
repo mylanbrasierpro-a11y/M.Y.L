@@ -18,7 +18,6 @@
             <ul>
                 <li><a href="{{ path('app_accueil') }}"><img src="{{asset('img/home.png')}}" alt=""></a></li>
                 <li><a href="{{ path('app_search') }}"><img src="{{asset('img/search.png')}}" alt=""></a></li>
-                <li><a href="{{ path('app_hommage') }}"><img src="{{asset('img/hommage.png')}}" alt=""></a></li>
                 {% if not is_granted('ROLE_USER')%}
                     <li><a href="{{ path('app_login') }}"><img src="{{asset('img/login.png')}}" alt=""></a></li>
                     <li><a href="{{ path('inscription') }}"><img src="{{asset('img/register.png')}}" alt=""></a></li>
