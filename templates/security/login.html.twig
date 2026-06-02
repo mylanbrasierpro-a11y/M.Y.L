@@ -4,13 +4,9 @@
 
 {% block body %}
     <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+                Vous etes connecter en tant que {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
             </div>
         {% endif %}
         <div class="inscription">
@@ -36,9 +32,12 @@
         #}
 
             <button class="btn btn-lg btn-primary" type="submit">
-                Sign in
+                Connexion
             </button>
             <a href="{{ path('app_resetpassword') }}">Mot de passe oublié ?</a>
         </div>
+         {% if error %}
+            <div class="alert alert-danger">Mots de passe ou identifiant incorrects</div>
+        {% endif %}
     </form>
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block body %}
     <section>
         <div class='banner'>
-            <h1>Gallery !</h1>
+            <h1>Accueil !</h1>
         </div>
     </section>
     <section class="posts">
@@ -18,14 +18,16 @@
                         <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
                         <p><span class="text-meta">{{ post.user.username }} :</span> {{ post.body }}</p>
                         {% if is_granted('ROLE_USER')%}
-                                {% if app.user.id == post.user.id %}
-                                <a href="{{ path('update_article', {'id': post.id}) }}">Modifier</a>
-                                <form method="POST" onsubmit="return confirm('Confirmer la suppression?')"
-                                    action="{{ path('delete_article', {'id': post.id}) }}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ post.id) }}">
-                                    <input id="delete" type="submit" value="Supprimer">
-                                </form>
+                            {% if app.user.id == post.user.id %}
+                                <div class='btns_post'>
+                                    <a class'btn_modifier' href="{{ path('update_article', {'id': post.id}) }}">Modifier</a>
+                                    <form method="POST" onsubmit="return confirm('Confirmer la suppression?')"
+                                        action="{{ path('delete_article', {'id': post.id}) }}">
+                                        <input type="hidden" name="_method" value="DELETE" >
+                                        <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ post.id) }}">
+                                        <input id="delete" type="submit" value="Supprimer" class='btn_supp'>
+                                    </form>
+                                </div>
                             {% endif %}
                         {% endif %}
                     </div>

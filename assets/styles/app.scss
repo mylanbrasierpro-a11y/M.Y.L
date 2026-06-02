@@ -3,9 +3,11 @@
 @use 'layout/inscription';
 @use 'layout/acceuil';
 @use 'layout/profil';
+@use 'layout/addpost';
 // base
 @use 'base/base';
 @use 'base/fonts';
 @use 'base/form';
+@use 'base/cards';
 //variables
 @use 'abstracts/variables';

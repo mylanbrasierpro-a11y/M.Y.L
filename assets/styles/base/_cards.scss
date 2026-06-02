@@ -1,0 +1,42 @@
+.boucle{
+
+    .card{
+        width: 100%;
+        max-width: 725px;
+        margin: 3rem;
+        padding: 20px;
+        border-radius: 3px;
+        border: 1px solid #222225;
+        img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .text-meta{
+            font-weight: bold;
+        }
+        .btns_post{
+            display: flex;
+            gap: 15px;
+        a{
+            background-color: #5865F2;
+            color: rgb(255, 255, 255);
+            padding: 6px 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn_supp{
+            background-color: #DA3E44;
+            color: rgb(255, 255, 255);
+            padding: 6px 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    }
+    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
