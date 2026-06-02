@@ -16,14 +16,14 @@
     <body>
         <header>
             <ul>
-                <li><a href="{{ path('app_accueil') }}"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ABACB2"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.36407 12.9579C1.98463 10.3208 1.79491 9.00229 2.33537 7.87495C2.87583 6.7476 4.02619 6.06234 6.32691 4.69181L7.71175 3.86687C9.80104 2.62229 10.8457 2 12 2C13.1543 2 14.199 2.62229 16.2882 3.86687L17.6731 4.69181C19.9738 6.06234 21.1242 6.7476 21.6646 7.87495C22.2051 9.00229 22.0154 10.3208 21.6359 12.9579L21.3572 14.8952C20.8697 18.2827 20.626 19.9764 19.451 20.9882C18.2759 22 16.5526 22 13.1061 22H10.8939C7.44737 22 5.72409 22 4.54903 20.9882C3.37396 19.9764 3.13025 18.2827 2.64284 14.8952L2.36407 12.9579Z" stroke="#ABACB2" stroke-width="1.5"></path> <path d="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16" stroke="#ABACB2" stroke-width="1.5" stroke-linecap="round"></path> </g></svg></a></li>
-                <li><a href="{{ path('app_search') }}"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#ABACB2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a></li>
+                <li><a href="{{ path('app_accueil') }}"><img src="{{asset('img/home.png')}}" alt=""></a></li>
+                <li><a href="{{ path('app_search') }}"><img src="{{asset('img/search.png')}}" alt=""></a></li>
                 {% if not is_granted('ROLE_USER')%}
-                    <li><a href="{{ path('app_login') }}"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17" stroke="#ABACB2" stroke-width="1.5" stroke-linecap="round"></path> <path d="M4 12H14M14 12L11 9M14 12L11 15" stroke="#ABACB2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a></li>
+                    <li><a href="{{ path('app_login') }}"><img src="{{asset('img/login.png')}}" alt=""></a></li>
                     <li><a href="{{ path('inscription') }}"><img src="{{asset('img/register.png')}}" alt=""></a></li>
                 {% endif %}
                 {% if is_granted('ROLE_USER')%}
-                    <li><a href="{{ path('app_messagerie') }}"><img src="{{asset('img/send.png')}}" alt=""></a></li>
+                    <li><a href="{{ path('app_messagerie') }}"><img src="{{asset('img/message.png')}}" alt=""></a></li>
                     <li><a href="{{ path('app_profil') }}"><img src="{{asset('img/profil.png')}}" alt =""></a></li>
                     <li><a href="{{ path('app_addpost') }}"><img src="{{asset('img/add.png')}}" alt =""></a></li>
                     <li><a href="{{ path('app_logout') }}"><img src="{{asset('img/logout.png')}}" alt =""></a></li>
