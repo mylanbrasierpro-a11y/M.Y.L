@@ -17,15 +17,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ProfilController extends AbstractController
 {
-    #[Route('/profil', name: 'app_profil')]
-public function index(Security $security, PostsRepository $postrepository): Response
+#[Route('/profil/{id}', name: 'app_profil', requirements: ['id' => '\d+'])]
+    public function public(int $id, UserRepository $userRepository, Security $security): Response
     {
-        $user = $security->getUser();
-        $posts = $postrepository->findBy(['user' => $user]); 
+        $currentUser = $security->getUser();
+        $user        = $userRepository->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur introuvable.');
+        }
 
         return $this->render('profil/index.html.twig', [
-            'user' => $user,
-            'posts' => $posts,
+            'user'        => $user,
+            'currentUser' => $currentUser,
         ]);
     }
 

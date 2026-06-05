@@ -7,6 +7,7 @@ use App\Form\UpdateType;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,11 +15,14 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil')]
-    public function index(PostsRepository $postrepository): Response
+    public function index(PostsRepository $postrepository, Security $security): Response
     {
         $post = $postrepository->findAll();
+        $user = $security->getUser();
         return $this->render('accueil/index.html.twig', [
-            'posts' => $post,]);
+            'posts' => $post,
+            'user' => $user,
+        ]);
     }
     #[Route('/update/{id}', name:'update_article')]
 
