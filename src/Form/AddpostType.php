@@ -24,6 +24,7 @@ class AddpostType extends AbstractType
                 'row_attr' => ['class' => 'form-group'],
             ])
             ->add('imageFile', FileType::class,[
+                'label' => false,
                 'required' => false,
                 'mapped' => true,
                 'constraints' => [

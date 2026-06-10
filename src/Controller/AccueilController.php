@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Posts;
+use App\Form\CommentType;
 use App\Form\UpdateType;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,12 +19,38 @@ final class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(PostsRepository $postrepository, Security $security): Response
     {
+        $form = $this->createForm(CommentType::class);
         $post = $postrepository->findAll();
         $user = $security->getUser();
+
         return $this->render('accueil/index.html.twig', [
             'posts' => $post,
             'user' => $user,
-        ]);
+            'comment' => $form->createView(), 
+    ]);
+
+    }
+
+    #[Route('/add/comment/{id}', name: 'app_comment')]
+    public function addComment(Posts $post,Request $request,EntityManagerInterface $em): Response 
+    {
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUser($this->getUser()); 
+            $comment->setPost($post);      
+
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Commentaire ajouté !');
+        }
+        
+
+        return $this->redirectToRoute('app_accueil');
     }
     #[Route('/update/{id}', name:'update_article')]
 

@@ -83,7 +83,7 @@ final class ProfilController extends AbstractController
 
         $this->addFlash('success', ' Le profil a été modifié avec succés !');
 
-        return $this->redirectToRoute('app_accueil');
+        return $this->redirectToRoute('app_profil');
     }
         return $this->render('updateuser/index.html.twig', [
             'updateuser' =>$form->createView(),
