@@ -28,7 +28,7 @@ final class ProfilController extends AbstractController
         }
 
         return $this->render('profil/index.html.twig', [
-            'user'        => $user,
+            'user' => $user,
             'currentUser' => $currentUser,
         ]);
     }
@@ -83,10 +83,11 @@ final class ProfilController extends AbstractController
 
         $this->addFlash('success', ' Le profil a été modifié avec succés !');
 
-        return $this->redirectToRoute('app_profil');
+        return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
     }
         return $this->render('updateuser/index.html.twig', [
             'updateuser' =>$form->createView(),
+            'user'=> $user,
         ]);
          
         }

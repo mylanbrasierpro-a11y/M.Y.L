@@ -4,7 +4,9 @@
 
 {% block body %}
     <div class='banner'>
-        <h1>Réinitialisation du mot de passe</h1>
+        {% if is_granted('ROLE_USER')%}
+        <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
+        {% endif %}        <h1>Réinitialisation du mot de passe</h1>
     </div>
     <div class='inscription'>
         <div class='form-inscription'>

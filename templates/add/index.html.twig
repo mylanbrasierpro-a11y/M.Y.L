@@ -3,13 +3,12 @@
 {% block title %}Chill Room-Add Post{% endblock %}
 
 {% block body %} 
-<div class='banner'>
-            <h1>Publie un post</h1>
-        </div>
+    <div class='banner'>
+        <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
+        <h1>Publie un post</h1>
+    </div>
     <div class='inscription'>
-       
         <div class='form-inscription'>
-        
         {{form_start(addpost)}}
         {{form_widget(addpost)}}
             <button class='btn_add'>Ajouter</button>

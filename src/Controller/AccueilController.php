@@ -48,7 +48,7 @@ final class AccueilController extends AbstractController
 
             $this->addFlash('success', 'Commentaire ajouté !');
         }
-            
+        
 
         return $this->redirectToRoute('app_accueil');
     }
@@ -57,6 +57,7 @@ final class AccueilController extends AbstractController
     public function modify(Posts $posts ,PostsRepository $postrepository, Request $request, EntityManagerInterface $entityManager ): Response
     {
     $form = $this->createForm(UpdateType::class, $posts);
+            $user = $this->getUser();
 
     $form->handleRequest($request);
 
@@ -69,9 +70,11 @@ final class AccueilController extends AbstractController
         $this->addFlash('success', ' Le post a été modifié avec succés !');
 
         return $this->redirectToRoute('app_accueil');
+        
     }
         return $this->render('updatepost/index.html.twig', [
             'update' =>$form->createView(),
+            'user' => $user,
         ]);
          
         }
@@ -84,5 +87,5 @@ final class AccueilController extends AbstractController
                 $this->addFlash("success", "La suppression a été effectuée");
                 return $this->redirectToRoute("app_accueil");
             }
-    }
+        }
 }

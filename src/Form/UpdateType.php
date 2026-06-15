@@ -4,8 +4,6 @@ namespace App\Form;
 
 
 use App\Entity\Posts;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,12 +31,14 @@ class UpdateType extends AbstractType
                 'row_attr' => ['class' => 'form-group'],
             ])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Posts::class,
+            
         ]);
     }
 }

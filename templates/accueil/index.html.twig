@@ -5,6 +5,9 @@
 {% block body %}
     <section>
         <div class='banner'>
+            {% if is_granted('ROLE_USER')%}
+            <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
+            {% endif %}
             <h1>Accueil !</h1>
         </div>
     </section>
@@ -24,12 +27,13 @@
                         </div>
                         <h2>{{ post.title }}</h2>
                         <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
-                        <a href="{{ path('app_profil', {'id': post.user.id}) }}" class='user-body'> > 
+                        <a href="{{ path('app_profil', {'id': post.user.id}) }}" class='user-body' > 
                             <p><span class="user-body">{{ post.user.username }} 
                         </a>
                         :</span> {{ post.body }}</p>
                         {% if is_granted('ROLE_USER')%}
                             {% if app.user.id == post.user.id %}
+                            <div class='body_post'>
                                 <div class='btns_post'>
                                     <a class'btn_modifier' href="{{ path('update_article', {'id': post.id}) }}">Modifier</a>
                                     <form method="POST" onsubmit="return confirm('Confirmer la suppression?')"
@@ -39,8 +43,11 @@
                                         <input id="delete" type="submit" value="Supprimer" class='btn_supp'>
                                     </form>
                                 </div>
+                                <div class='footer_post'>
+                                    <a href="{{ path('app_voirplus', {'id': post.id}) }}">Voir les commentaires...</a>
+                                </div>
+                            </div>
                             {% endif %}
-                                <a class'btn_voirplus' href="{{ path('app_voirplus', {'id': post.id}) }}">voir+</a>
                         {% endif %}
                     </div>
                 </div> 

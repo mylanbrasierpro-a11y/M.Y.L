@@ -5,6 +5,9 @@
 {% block body %}
 <section>
     <div class='banner'>
+        {% if is_granted('ROLE_USER')%}
+            <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
+        {% endif %}            
             <h1>Trouver un utilisateur</h1>
         </div>
     <div class='search' >

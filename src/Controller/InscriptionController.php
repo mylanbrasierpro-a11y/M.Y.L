@@ -39,6 +39,7 @@ final class InscriptionController extends AbstractController
         }
         return $this->render('inscription/index.html.twig', [
             'inscription'=>$form->createView(),
+            'user'=> $user,
         ]);
     }
 }

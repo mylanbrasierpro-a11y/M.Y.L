@@ -1,5 +1,7 @@
 .boucle{
-
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     .card{
         width: 100%;
         max-width: 725px;
@@ -8,6 +10,19 @@
         border-radius: 3px;
         border: 1px solid #222225;
         background-color: rgba(34,34 ,37,0.4 );
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .body_post{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer_post{
+            a{
+                color: white;
+            }
+        }
         a{
             text-decoration: none;
             display: inline-block;
@@ -52,14 +67,12 @@
         .btn_supp{
             background-color: #DA3E44;
             color: rgb(255, 255, 255);
-            padding: 6px 8px;
+            padding: 7px 8px;
             border-radius: 6px;
             text-decoration: none;
             display: inline-block;
+            cursor: pointer;
+        }
         }
     }
-    }
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }

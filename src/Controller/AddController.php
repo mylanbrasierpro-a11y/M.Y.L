@@ -17,7 +17,7 @@ final class AddController extends AbstractController
     public function addArticle(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
         $user = $this->getUser();
-
+    
         $post = new Posts();
         
         $post->setUser($user);
@@ -36,6 +36,7 @@ final class AddController extends AbstractController
             return $this->redirectToRoute('app_accueil');
 }
         return $this->render('add/index.html.twig', [
+            'user' => $user,
             'addpost' =>$form->createView(),
         ]);
     }

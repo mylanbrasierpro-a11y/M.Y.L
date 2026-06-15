@@ -12,11 +12,10 @@ use Symfony\Component\Routing\Attribute\Route;
 final class SearchController extends AbstractController
 {
    #[Route('/search', name: 'app_search', methods: ['GET'])]
-    public function index(
-        Request $request,
-        UserRepository $userRepository,
-        Security $security,
-    ): Response {
+    public function index(Request $request,UserRepository $userRepository,Security $security,): Response 
+    {
+        $user = $security->getUser();
+
         $query   = trim($request->query->get('q', ''));
         $results = [];
 
@@ -25,8 +24,9 @@ final class SearchController extends AbstractController
         }
 
         return $this->render('search/index.html.twig', [
-            'query'   => $query,
-            'results' => $results,
+            'user' => $user,
+            'query'=> $query,
+            'results'=> $results,
         ]);
     }
 }
