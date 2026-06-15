@@ -2,14 +2,18 @@
 
 {% block title %}Chill Room-Add Post{% endblock %}
 
-{% block body %}
-    <div class='inscription'>
-        <div class='form-inscription'>
+{% block body %} 
+<div class='banner'>
             <h1>Publie un post</h1>
-            {{form_start(addpost)}}
-            {{form_widget(addpost)}}
+        </div>
+    <div class='inscription'>
+       
+        <div class='form-inscription'>
+        
+        {{form_start(addpost)}}
+        {{form_widget(addpost)}}
             <button class='btn_add'>Ajouter</button>
-            {{form_end(addpost)}}
+        {{form_end(addpost)}}
         </div>
     </div>
 {% endblock %}

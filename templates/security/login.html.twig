@@ -9,8 +9,10 @@
                 Vous etes connecter en tant que {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
             </div>
         {% endif %}
+            <div class='banner'>
+                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+           </div>
         <div class="inscription">
-            <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
             <div class="form-group">
                 <label for="username">Email</label>
                 <input  class="form-input" type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" required autofocus>

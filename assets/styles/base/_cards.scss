@@ -11,6 +11,10 @@
         a{
             text-decoration: none;
             display: inline-block;
+            .user-body{
+                color: white;
+                font-weight: bold;
+            }
         }
         .post-user{
             display: flex;

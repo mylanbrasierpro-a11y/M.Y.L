@@ -3,9 +3,11 @@
 {% block title %}Chill Room-Update Post{% endblock %}
 
 {% block body %}
+    <div class='banner'>
+        <h1>Modifier mon profil</h1>
+    </div>
     <div class='inscription'>
         <div class='form-inscription'>
-            <h1>Modifier mon profil</h1>
                 {{form_start(updateuser)}}
                 {{form_widget(updateuser)}}
                 <button>Modifier</button>

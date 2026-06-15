@@ -23,7 +23,6 @@
                 {% endif %}
                 {% if is_granted('ROLE_USER')%}
                     <li><a href="{{ path('app_search') }}"><img src="{{asset('img/search.png')}}" alt=""></a></li>
-                    <li><a href="{{ path('app_messagerie') }}"><img src="{{asset('img/message.png')}}" alt=""></a></li>
                     <li><a href="{{ path('app_profil', {'id': app.user.id}) }}" ><img src="{{asset('img/profil.png')}}" alt =""></a></li>
                     <li><a href="{{ path('app_addpost') }}"><img src="{{asset('img/add.png')}}" alt =""></a></li>
                     <li><a href="{{ path('app_logout') }}"><img src="{{asset('img/logout.png')}}" alt =""></a></li>
