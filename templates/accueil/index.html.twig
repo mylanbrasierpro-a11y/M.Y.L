@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Chill Room-Home{% endblock %}
 
 {% block body %}
     <section>
@@ -14,6 +14,14 @@
                 {% for post in posts %}
                 <div class="card">
                     <div>
+                        <div> 
+                            <a href="{{ path('app_profil', {'id': post.user.id}) }}" >
+                                <div class='post-user'>
+                                    <img src="{{ asset('images/images/' ~ post.user.imgProfil) }}" alt="photo de profil dans le post" class='img-user-post'>
+                                    <p>{{post.user.username}}</p>
+                                </div>
+                            </a>
+                        </div>
                         <h2>{{ post.title }}</h2>
                         <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
                         <p><span class="text-meta">{{ post.user.username }} :</span> {{ post.body }}</p>
@@ -29,9 +37,7 @@
                                     </form>
                                 </div>
                             {% endif %}
-                                {{ form_start(comment, {'action': path('app_comment', {'id': post.id})}) }}
-                                    <button>Ajouter</button>
-                                {{form_end(comment)}}
+                                <a class'btn_voirplus' href="{{ path('app_voirplus', {'id': post.id}) }}">voir+</a>
                         {% endif %}
                     </div>
                 </div> 

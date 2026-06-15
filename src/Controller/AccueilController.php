@@ -48,7 +48,7 @@ final class AccueilController extends AbstractController
 
             $this->addFlash('success', 'Commentaire ajouté !');
         }
-        
+            
 
         return $this->redirectToRoute('app_accueil');
     }

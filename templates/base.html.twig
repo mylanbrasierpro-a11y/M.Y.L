@@ -17,12 +17,12 @@
         <header>
             <ul>
                 <li><a href="{{ path('app_accueil') }}"><img src="{{asset('img/home.png')}}" alt=""></a></li>
-                <li><a href="{{ path('app_search') }}"><img src="{{asset('img/search.png')}}" alt=""></a></li>
                 {% if not is_granted('ROLE_USER')%}
                     <li><a href="{{ path('app_login') }}"><img src="{{asset('img/login.png')}}" alt=""></a></li>
                     <li><a href="{{ path('inscription') }}"><img src="{{asset('img/register.png')}}" alt=""></a></li>
                 {% endif %}
                 {% if is_granted('ROLE_USER')%}
+                    <li><a href="{{ path('app_search') }}"><img src="{{asset('img/search.png')}}" alt=""></a></li>
                     <li><a href="{{ path('app_messagerie') }}"><img src="{{asset('img/message.png')}}" alt=""></a></li>
                     <li><a href="{{ path('app_profil', {'id': app.user.id}) }}" ><img src="{{asset('img/profil.png')}}" alt =""></a></li>
                     <li><a href="{{ path('app_addpost') }}"><img src="{{asset('img/add.png')}}" alt =""></a></li>

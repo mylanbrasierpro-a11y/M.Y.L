@@ -21,7 +21,7 @@ final class ProfilController extends AbstractController
     public function public(int $id, UserRepository $userRepository, Security $security): Response
     {
         $currentUser = $security->getUser();
-        $user        = $userRepository->find($id);
+        $user = $userRepository->find($id);
 
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur introuvable.');

@@ -6,6 +6,7 @@ use App\Entity\Posts;
 use App\Form\AddpostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AddController extends AbstractController
 {
     #[Route('/addpost', name: 'app_addpost')]
-    public function addArticle(Request $request, EntityManagerInterface $entityManager): Response
+    public function addArticle(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
         $user = $this->getUser();
 
