@@ -3,16 +3,16 @@
 {% block title %}Chill Room-Recherche Utilisateur{% endblock %}
 
 {% block body %}
-<section>
     <div class='banner'>
         {% if is_granted('ROLE_USER')%}
             <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
-        {% endif %}            
-            <h1>Trouver un utilisateur</h1>
-        </div>
+        {% endif %}
+        <h1>Recherche utilisateur</h1>
+    </div>
+<section>
     <div class='search' >
-        <form  method="GET" action="{{ path('app_search') }}">
-            <div>
+        <form  method="GET" action="{{ path('app_search') }}" class='form-search'>
+            <div class='form-search'>
                 <div class='form-group-search'>
                     <div class='form-group'>
                         <input
@@ -28,7 +28,6 @@
                 <button class='btn-search' type="submit">Rechercher</button>
             </div>
         </form>
-
         {% if query %}
             <p>
                 {% if results|length > 0 %}
@@ -39,7 +38,6 @@
                 {% endif %}
             </p>
         {% endif %}
-
         <div>
             {% for user in results %}
             <a href="{{ path('app_profil', {'id': user.id}) }}" >

@@ -8,7 +8,7 @@
             {% if is_granted('ROLE_USER')%}
             <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
             {% endif %}
-            <h1>Accueil !</h1>
+            <h1>Accueil</h1>
         </div>
     </section>
     <section class="posts">
@@ -27,6 +27,7 @@
                         </div>
                         <h2>{{ post.title }}</h2>
                         <img src="{{ asset('images/images/' ~ post.imageName) }}" alt="Image du post">
+                        <p>{{ post.updatedAt|date("m/d/Y H:i" , "Europe/Paris" ) }}</p>
                         <a href="{{ path('app_profil', {'id': post.user.id}) }}" class='user-body' > 
                             <p><span class="user-body">{{ post.user.username }} 
                         </a>

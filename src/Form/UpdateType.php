@@ -17,14 +17,17 @@ class UpdateType extends AbstractType
     {
         $builder
            ->add('title', TextType::class,[
+                'label' => 'Titre',
                 'attr' => ['class' => 'form-input'],
                 'row_attr' => ['class' => 'form-group'],
             ])
             ->add('Body', TextType::class,[
+                'label' => 'Bio',
                 'attr' => ['class' => 'form-input'],
                 'row_attr' => ['class' => 'form-group'],
             ])
             ->add('imageFile', FileType::class,[
+                'label' => 'Image du post',
                 'required' => false,
                 'mapped' => true,
                 'attr' => ['class' => 'form-input'],
