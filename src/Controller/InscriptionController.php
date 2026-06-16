@@ -16,6 +16,7 @@ final class InscriptionController extends AbstractController
        #[Route('/inscription',name:'inscription')]
     public function adduser(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordEncoder):Response
     {
+        
         $user = new User();
 
         $form = $this->createForm(InscriptionType::class, $user);
@@ -28,12 +29,16 @@ final class InscriptionController extends AbstractController
                     $user->setPassword(
                         $passwordEncoder->hashpassword($user,$form->get('password')->getData())
                     );
+
+            if($user->getImgProfil() == null ){
+                $user->setImgProfil('avatar.png') ;
+            }
+
             $entityManager->persist($user);
 
             $entityManager->flush();
 
             $this->addFlash('success', 'Utilisateur ajouté avec succés !');
-            
 
             return $this->redirectToRoute('app_accueil');
         }

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
 use App\Entity\Posts;
 use App\Form\CommentType;
 use App\Repository\PostsRepository;
@@ -20,7 +19,9 @@ final class AccueilController extends AbstractController
     {
 
         $form = $this->createForm(CommentType::class);
+
         $post = $postrepository->findBy([], ['id' => 'DESC']);
+
         $user = $security->getUser();
 
         return $this->render('accueil/index.html.twig', [
@@ -31,31 +32,33 @@ final class AccueilController extends AbstractController
 
     }
 
-    #[Route('/add/comment/{id}', name: 'app_comment')]
-    public function addComment(Posts $post,Request $request,EntityManagerInterface $em): Response 
-    {
-
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser()); 
-            $comment->setPost($post);      
-
-            $em->persist($comment);
-            $em->flush();
-
-            $this->addFlash('success', 'Commentaire ajouté !');
-        }
+    // #[Route('/add/comment/{id}', name: 'app_comment')]
+    // public function addComment(Posts $post,Request $request,EntityManagerInterface $em): Response 
+    // {
+    //     $comment = new Comment();
         
+    //     $form = $this->createForm(CommentType::class, $comment);
 
-        return $this->redirectToRoute('app_accueil');
-    }
+    //     $form->handleRequest($request);
 
-    #[Route('/update/{id}', name:'update_article')]
-    public function modify(Posts $posts ,PostsRepository $postrepository, Request $request, EntityManagerInterface $entityManager ): Response
-    {
+    //     if ($form->isSubmitted() && $form->isValid()) {
+
+    //         $comment->setUser($this->getUser()); 
+
+    //         $comment->setPost($post);
+
+    //         $em->persist($comment);
+    //         $em->flush();
+
+    //         $this->addFlash('success', 'Commentaire ajouté !');
+    //     }
+    //     return $this->redirectToRoute('app_accueil');
+        
+    // }
+
+    // #[Route('/update/{id}', name:'update_article')]
+    // public function modify(Posts $posts ,PostsRepository $postrepository, Request $request, EntityManagerInterface $entityManager ): Response
+    // {
     // dd('test');
     // if ($posts->getId() && $posts->getUser() !== $this->getUser()) {
 
@@ -80,12 +83,12 @@ final class AccueilController extends AbstractController
     //     return $this->redirectToRoute('app_accueil');
         
     // }
-        return $this->render('updatepost/index.html.twig', [
-            'update' =>$form->createView(),
-            'user' => $user,
-        ]);
+        // return $this->render('updatepost/index.html.twig', [
+        //     // 'update' =>$form->createView(),
+        //     // 'user' => $user,
+        // ]);
          
-        }
+        // }
         #[Route('/suppr/article/{id}', name: 'delete_article')]
         public function delete(Posts $posts, Request $request, EntityManagerInterface $entityManager): Response
         {

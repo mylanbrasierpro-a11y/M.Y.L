@@ -18,6 +18,7 @@ final class CommentController extends AbstractController
     #[Route('/voir-plus/{id}', name: 'app_voirplus')]
     public function index(Posts $post,PostsRepository $postrepository,Security $security): Response
     {
+        
         $form = $this->createForm(CommentType::class);
         $user = $security->getUser();
 

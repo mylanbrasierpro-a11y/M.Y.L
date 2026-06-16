@@ -4,7 +4,11 @@
 
 {% block body %} 
     <div class='banner'>
-        <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image du post">
+        {% if is_granted('ROLE_USER')%}
+            <a href="{{ path('app_profil', {'id': post.user.id}) }}" >
+                <img src="{{ asset('images/images/' ~ user.imgProfil) }}" alt="Image de la bannière">
+            </a>        
+        {% endif %}       
         <h1>Publie un post</h1>
     </div>
     <div class='inscription'>

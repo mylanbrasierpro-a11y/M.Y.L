@@ -11,7 +11,6 @@
     <section class="profil">
         {% if is_granted('ROLE_USER')%}
             {% if app.user.id == user.id %}
-                
                 <p>Bienvenue sur votre profil, {{ user.username }}!</p>
             {% endif %}
         {% endif %}

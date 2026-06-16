@@ -27,7 +27,6 @@ class AddpostType extends AbstractType
             ])
             ->add('imageFile', FileType::class,[
                 'label' => 'Image du post',
-                'label' => false,
                 'required' => false,
                 'mapped' => true,
                 'constraints' => [
