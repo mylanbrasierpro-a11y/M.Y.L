@@ -20,7 +20,9 @@ final class ProfilController extends AbstractController
 #[Route('/profil/{id}', name: 'app_profil', requirements: ['id' => '\d+'])]
     public function public(int $id, UserRepository $userRepository, Security $security): Response
     {
+
         $currentUser = $security->getUser();
+
         $user = $userRepository->find($id);
 
         if (!$user) {
@@ -37,6 +39,10 @@ final class ProfilController extends AbstractController
 
     public function modify(Posts $posts ,PostsRepository $postrepository, Request $request, EntityManagerInterface $entityManager ): Response
     {
+    if ($posts->getId() && $posts->getUser() !== $this->getUser()) {
+
+    return $this->redirectToRoute('app_accueil');        
+    }
     $form = $this->createForm(UpdateType::class, $posts);
 
     $form->handleRequest($request);
@@ -71,6 +77,11 @@ final class ProfilController extends AbstractController
 
     public function modifyuser(User $user ,UserRepository $userrepository, Request $request, EntityManagerInterface $entityManager ): Response
     {
+        
+    if ($user->getId() !== $this->getUser()) {
+
+    return $this->redirectToRoute('app_accueil');   
+
     $form = $this->createForm(UpdateuserType::class, $user);
 
     $form->handleRequest($request);
@@ -91,4 +102,5 @@ final class ProfilController extends AbstractController
         ]);
          
         }
+    }
 }

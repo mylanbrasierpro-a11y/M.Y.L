@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class InscriptionType extends AbstractType
@@ -35,6 +36,22 @@ class InscriptionType extends AbstractType
                 'download_uri' => false,
                 'attr' => ['class' => 'form-input-file'],
                 'row_attr' => ['class' => 'form-group'],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/pgn',
+                            'image/gif',
+                            'image/jpg',
+                            'image/webp',
+                            'image/png',
+                            'attr' => ['class' => 'form-input'],
+                            'row_attr' => ['class' => 'form-group'],
+                        ],
+                        'mimeTypesMessage' => 'veuillez uploader une image valide ( JPEG, PNG, GIF, JPG, WEBP)'
+                    ])
+                ]
             ])
         ;
     }

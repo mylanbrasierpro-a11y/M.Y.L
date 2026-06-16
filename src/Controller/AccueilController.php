@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Posts;
 use App\Form\CommentType;
-use App\Form\UpdateType;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,8 +18,9 @@ final class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(PostsRepository $postrepository, Security $security): Response
     {
+
         $form = $this->createForm(CommentType::class);
-        $post = $postrepository->findAll();
+        $post = $postrepository->findBy([], ['id' => 'DESC']);
         $user = $security->getUser();
 
         return $this->render('accueil/index.html.twig', [
@@ -52,26 +52,34 @@ final class AccueilController extends AbstractController
 
         return $this->redirectToRoute('app_accueil');
     }
-    #[Route('/update/{id}', name:'update_article')]
 
+    #[Route('/update/{id}', name:'update_article')]
     public function modify(Posts $posts ,PostsRepository $postrepository, Request $request, EntityManagerInterface $entityManager ): Response
     {
-    $form = $this->createForm(UpdateType::class, $posts);
-            $user = $this->getUser();
+    // dd('test');
+    // if ($posts->getId() && $posts->getUser() !== $this->getUser()) {
 
-    $form->handleRequest($request);
+    // // interdit l'accès
+    // return $this->redirectToRoute('app_accueil');        
+    // }
 
-    if($form->isSubmitted() && $form->isValid()){
+    // $form = $this->createForm(UpdateType::class, $posts);
 
-        $entityManager->persist($posts);
+    // $user = $this->getUser();
 
-        $entityManager->flush();
+    // $form->handleRequest($request);
 
-        $this->addFlash('success', ' Le post a été modifié avec succés !');
+    // if($form->isSubmitted() && $form->isValid()){
 
-        return $this->redirectToRoute('app_accueil');
+    //     $entityManager->persist($posts);
+
+    //     $entityManager->flush();
+
+    //     $this->addFlash('success', ' Le post a été modifié avec succés !');
+
+    //     return $this->redirectToRoute('app_accueil');
         
-    }
+    // }
         return $this->render('updatepost/index.html.twig', [
             'update' =>$form->createView(),
             'user' => $user,

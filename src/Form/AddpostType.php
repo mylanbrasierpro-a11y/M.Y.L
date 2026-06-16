@@ -42,8 +42,6 @@ class AddpostType extends AbstractType
                             'image/png',
                             'attr' => ['class' => 'form-input'],
                             'row_attr' => ['class' => 'form-group'],
-
-
                         ],
                         'mimeTypesMessage' => 'veuillez uploader une image valide ( JPEG, PNG, GIF, JPG, WEBP)'
                     ])

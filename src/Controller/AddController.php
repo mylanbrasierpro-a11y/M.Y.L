@@ -32,9 +32,16 @@ final class AddController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Article a ajouté avec succés !');
+            if($post->getImageName() == null );{
+                $post->setImageName('post.png') ;
+            }
+            $entityManager->persist($post);
 
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Article a ajouté avec succés !');
             return $this->redirectToRoute('app_accueil');
-}
+        }
         return $this->render('add/index.html.twig', [
             'user' => $user,
             'addpost' =>$form->createView(),
