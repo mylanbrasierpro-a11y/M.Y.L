@@ -43,7 +43,7 @@ final class AddController extends AbstractController
             return $this->redirectToRoute('app_accueil');
         }
         return $this->render('add/index.html.twig', [
-            
+            'post' => $post,
             'user' => $user,
             'addpost' =>$form->createView(),
         ]);

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,8 +16,9 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil')]
-    public function index(PostsRepository $postrepository, Security $security): Response
+    public function index(PostsRepository $postrepository, CommentRepository $commentrepository, Security $security): Response
     {
+        $comment = $commentrepository->findBy([], ['id' => 'DESC'],3);
 
         $form = $this->createForm(CommentType::class);
 
@@ -25,11 +27,10 @@ final class AccueilController extends AbstractController
         $user = $security->getUser();
 
         return $this->render('accueil/index.html.twig', [
+            'comment' => $comment,
             'posts' => $post,
             'user' => $user,
-            'comment' => $form->createView(), 
     ]);
-
     }
 
     // #[Route('/add/comment/{id}', name: 'app_comment')]

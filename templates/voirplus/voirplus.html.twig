@@ -46,10 +46,21 @@
                                     </form>
                                 </div>
                             </div>
-                                {{ form_start(comment, {'action': path('app_comment', {'id': post.id})}) }}
-                                {{form_end(comment)}}
-                                <button>Ajouter</button>
+                                {{ form_start(form, {'action': path('app_comment', {'id': post.id})}) }}
+                                    <button>Ajouter</button>
+                                {{form_end(form)}}
                             {% endif %}
+                            {% for comment in comments %}
+                                <div class='section_comment'>
+                                    <div class='comment'>
+                                        <a href="{{ path('app_profil', {'id': comment.user.id}) }}" >
+                                            <img src="{{ asset('images/images/' ~ comment.user.imgProfil) }}" alt="photo de profil dans le post" class='img-user-post'>
+                                        </a>
+                                        <p>{{ comment.user.username }}</p>
+                                        <p>{{ comment.text }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         {% endif %}
                     </div>
                 </div> 

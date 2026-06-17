@@ -76,11 +76,13 @@ final class ProfilController extends AbstractController
     #[Route('/updateuser/{id}', name:'update_user')]
 
     public function modifyuser(User $user ,UserRepository $userrepository, Request $request, EntityManagerInterface $entityManager ): Response
-    {
-        
-    if ($user->getId() !== $this->getUser()) {
+    {  
 
-    return $this->redirectToRoute('app_accueil');   
+    if ($user->getId() !== $this->getUser()->getId()) {
+
+    return $this->redirectToRoute('app_accueil'); 
+
+    }
 
     $form = $this->createForm(UpdateuserType::class, $user);
 
@@ -92,6 +94,7 @@ final class ProfilController extends AbstractController
 
         $entityManager->flush();
 
+
         $this->addFlash('success', ' Le profil a été modifié avec succés !');
 
         return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
@@ -101,6 +104,5 @@ final class ProfilController extends AbstractController
             'user'=> $user,
         ]);
          
-        }
     }
 }

@@ -12,7 +12,20 @@
         background-color: rgba(34,34 ,37,0.4 );
         display: flex;
         justify-content: center;
-        max-height:900px ;
+        .section_comment{
+            display:flex;
+            .comment{
+            display:flex;
+            align-items: center;
+            gap: 0.5rem;
+            }
+            img{
+                height: 2.4rem;
+                width: 2.4rem;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
         .body_post{
             display: flex;
             flex-direction: column;

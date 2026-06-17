@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Posts;
 use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,16 +17,18 @@ use Symfony\Component\Routing\Attribute\Route;
 final class CommentController extends AbstractController
 {
     #[Route('/voir-plus/{id}', name: 'app_voirplus')]
-    public function index(Posts $post,PostsRepository $postrepository,Security $security): Response
+    public function index(CommentRepository $commentrepository,Posts $post,PostsRepository $postrepository,Security $security): Response
     {
         
         $form = $this->createForm(CommentType::class);
         $user = $security->getUser();
+        $comments = $commentrepository->findBy(['post' => $post], ['id' => 'DESC']);
 
         return $this->render('voirplus/voirplus.html.twig', [
-            'post' => $post,
-            'user' => $user,
-            'comment' => $form->createView(),
+        'post' => $post,
+        'user' => $user,
+        'form' => $form->createView(),
+        'comments' => $comments,
         ]);
     }
     

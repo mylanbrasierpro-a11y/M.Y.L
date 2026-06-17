@@ -4,6 +4,9 @@
 
 {% block body %}
     <div class='banner'>
+        <a href="{{ path('app_profil', {'id': app.user.id}) }}" >
+            <img src="{{ asset('images/images/' ~ app.user.imgProfil) }}" alt="Image de la bannière">
+        </a>
         <h1>Modifier le post</h1>
     </div>
     <div class='inscription'>
