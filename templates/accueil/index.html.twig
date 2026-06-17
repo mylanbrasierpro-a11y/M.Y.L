@@ -46,11 +46,11 @@
                                         <input id="delete" type="submit" value="Supprimer" class='btn_supp'>
                                     </form>
                                 </div>
-                                <div class='footer_post'>
-                                    <a href="{{ path('app_voirplus', {'id': post.id}) }}">Voir les commentaires...</a>
-                                </div>
                             </div>
                             {% endif %}
+                            <div class='footer_post'>
+                                <a href="{{ path('app_voirplus', {'id': post.id}) }}">Voir les commentaires...</a>
+                            </div>
                         {% endif %}
                     </div>
                 </div> 
