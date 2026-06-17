@@ -18,7 +18,6 @@ final class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(PostsRepository $postrepository, CommentRepository $commentrepository, Security $security): Response
     {
-        $comment = $commentrepository->findBy([], ['id' => 'DESC'],3);
 
         $form = $this->createForm(CommentType::class);
 
@@ -27,7 +26,6 @@ final class AccueilController extends AbstractController
         $user = $security->getUser();
 
         return $this->render('accueil/index.html.twig', [
-            'comment' => $comment,
             'posts' => $post,
             'user' => $user,
     ]);
