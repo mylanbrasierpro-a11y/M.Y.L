@@ -19,8 +19,10 @@
         {% endif %}
         <div class="avatar">
             <img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="Image de profil">   
+                    {% if is_granted('ROLE_USER')%}
             {% if app.user.id == user.id %}
                 <a class='update-user' href="{{path('update_user',{'id' : user.id})}}">Modifier le profil</a>
+            {% endif %}
             {% endif %}
         </div>
     </section>
