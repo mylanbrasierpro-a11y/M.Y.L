@@ -24,23 +24,26 @@ final class AddController extends AbstractController
 
         $form = $this->createForm(AddpostType::class, $post);
         
-        $form->handleRequest($request);
-        if($form->isSubmitted()&& $form->isValid()){
+        $form->handleRequest($request);    
+        
+        $post->setCreatedAt(new \DateTimeImmutable());  
 
-            $entityManager->persist($post);
+        if($post->getImageName() == null );{
+                
+            $post->setImageName('post.png') ;
+        }
 
-            $entityManager->flush();
+        if($form->isSubmitted()&& $form->isValid()){           
+             
+        $this->addFlash('success', 'Article a ajouté avec succés !');
 
-            $this->addFlash('success', 'Article a ajouté avec succés !');
-            if($post->getImageName() == null );{
-                $post->setImageName('post.png') ;
-            }
-            $entityManager->persist($post);
 
-            $entityManager->flush();
+        $entityManager->persist($post);
 
-            $this->addFlash('success', 'Article a ajouté avec succés !');
-            return $this->redirectToRoute('app_accueil');
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Article a ajouté avec succés !');
+        return $this->redirectToRoute('app_accueil');
         }
         return $this->render('add/index.html.twig', [
             'post' => $post,

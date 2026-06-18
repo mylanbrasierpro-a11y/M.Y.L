@@ -10,18 +10,47 @@
         border-radius: 3px;
         border: 1px solid #222225;
         background-color: rgba(34,34 ,37,0.4 );
-        display: flex;
-        justify-content: center;
+        .post_content{
+            .post-img{
+
+                img{
+                width: 100%;
+                max-height:450px ;
+                }
+            }
+        }
+        .post-user{
+            display: flex;
+            justify-content:baseline;
+        }
+        form{
+            gap: 10px;
+            display: flex;
+            #comment_text{
+                border-radius: 6px;
+
+            }
+        }
+        .footer_post{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .text-date{
+            opacity: 0.5;
+        }
         .section_comment{
             display:flex;
+            margin-top: 10px;
             .comment{
             display:flex;
             align-items: center;
             gap: 0.5rem;
             }
             img{
-                height: 2.4rem;
-                width: 2.4rem;
+                height: 1.5rem;
+                width: 1.5rem;
                 object-fit: cover;
                 border-radius: 50%;
             }
@@ -31,7 +60,7 @@
             flex-direction: column;
             gap: 10px;
         }
-        .footer_post{
+        .voirplus{
             a{
                 color: white;
             }
@@ -57,11 +86,6 @@
                 object-fit: cover;
                 border-radius: 50%;
             }
-        }
-        img{
-            width: 100%;
-            max-height:450px ;
-            object-fit: cover;
         }
         .text-meta{
             font-weight: bold;
