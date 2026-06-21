@@ -23,6 +23,7 @@
     p{
         font-size: 25px;
         font-weight: bold;
+        text-align: center;
     }
     .avatar img{
         width: 150px;
@@ -31,4 +32,40 @@
         object-fit: cover;
         border: 3px solid #c89b3c44;
     }
+}
+
+@media screen and (max-width: 375px) {
+    .profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+    .avatar{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3rem;
+        .update-user{
+            background-color: #5865F2;
+            color: rgb(255, 255, 255);
+            padding: 6px 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+    p{
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .avatar img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #c89b3c44;
+    }
+}
 }
