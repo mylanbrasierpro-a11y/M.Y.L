@@ -115,3 +115,21 @@
         }
     }
 }
+@media screen and (max-width: 990px) {
+.boucle{
+    .card{
+        max-width: 475px;
+        margin: 3rem;
+        padding: 20px;
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+.boucle{
+    .card{
+        max-width: 275px;
+        margin: 3rem;
+        padding: 20px;
+        }
+    }
+}
