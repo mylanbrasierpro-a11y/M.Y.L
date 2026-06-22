@@ -13,7 +13,7 @@
     </div>
 <section>
     <div class='search' >
-        <form  method="GET" action="{{ path('app_search') }}" class='form-search'>
+        <form  method="GET" action="{{ path('app_search') }}" class=''>
             <div class='form-search'>
                 <div class='form-group-search'>
                     <div class='form-group'>
@@ -43,7 +43,7 @@
         <div>
             {% for user in results %}
             <a href="{{ path('app_profil', {'id': user.id}) }}" >
-                <div>
+                <div class'result'>
                     <span>{{ user.username }}</span>
                 </div>
             </a>
