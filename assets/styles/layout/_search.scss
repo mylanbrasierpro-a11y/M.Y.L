@@ -5,6 +5,9 @@
     align-items: center;
     justify-content: center;  
     height: 80vh;
+    a{
+        text-decoration: none;
+    }
     .form-search{
         display: flex;
         flex-direction: column;
@@ -12,7 +15,7 @@
         justify-content: center;
         padding: 4rem;
         background-color: rgba(34,34 ,37,0.6 );
-            border-radius: 3px;
+        border-radius: 3px;
         .btn-search{
             align-self: center;
         }
@@ -25,3 +28,6 @@
 
         }
     }
+.classresult{
+    color:black;
+}

@@ -7,5 +7,6 @@
  */
 import './js/navbar.js';
 import './styles/app.scss';
+import './js/dark.js'
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

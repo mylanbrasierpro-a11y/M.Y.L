@@ -43,8 +43,8 @@
         <div>
             {% for user in results %}
             <a href="{{ path('app_profil', {'id': user.id}) }}" >
-                <div class'result'>
-                    <span>{{ user.username }}</span>
+                <div>
+                    <span class='classresult'>{{ user.username }}</span>
                 </div>
             </a>
             {% endfor %}

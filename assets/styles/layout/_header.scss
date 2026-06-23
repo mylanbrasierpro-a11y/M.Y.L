@@ -48,7 +48,7 @@ header{
 
 @media screen and (max-width: 990px) {
 header{
-    width: 100%;
+    width: 6rem;
     height: 60px;
     position: fixed;
     top: 0;
@@ -57,7 +57,6 @@ header{
     align-items: flex-start;
     z-index: 1000;
     background:none;
-    
     .navbar{
         .navbar-container{
             display: flex;
@@ -66,6 +65,10 @@ header{
             padding: 10px;
             margin: 0 15px;
             height: 50px;
+            img{
+                height: 60px;
+                width: 60px;
+            }
             .nav-menu{
                 display: none;
                 position: absolute;

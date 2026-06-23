@@ -39,6 +39,7 @@ final class ProfilController extends AbstractController
 
     public function modify(Posts $posts ,PostsRepository $postrepository, Request $request, EntityManagerInterface $entityManager ): Response
     {
+
     if ($posts->getId() && $posts->getUser() !== $this->getUser()) {
 
     return $this->redirectToRoute('app_accueil');        
@@ -77,25 +78,23 @@ final class ProfilController extends AbstractController
 
     public function modifyuser(User $user ,UserRepository $userrepository, Request $request, EntityManagerInterface $entityManager ): Response
     {  
+        if ($user->getEmail() !== $this->getUser()->getUserIdentifier()) {
 
-    if ($user->getId() !== $this->getUser()->getId()) {
-
-    return $this->redirectToRoute('app_accueil'); 
+        return $this->redirectToRoute('app_accueil');
 
     }
 
     $form = $this->createForm(UpdateuserType::class, $user);
 
     $form->handleRequest($request);
-
     if($form->isSubmitted() && $form->isValid()){
 
         $entityManager->persist($user);
 
         $entityManager->flush();
 
-
         $this->addFlash('success', ' Le profil a été modifié avec succés !');
+        $user->setImageFile(null);
 
         return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
     }
