@@ -28,26 +28,26 @@
                     </div>
                 </div>
                 <button class='btn-search' type="submit">Rechercher</button>
+            </form>
+            {% if query %}
+                <p>
+                    {% if results|length > 0 %}
+                        {{ results|length }} résultat{{ results|length > 1 ? 's' : '' }} pour
+                        <strong>« {{ query }} »</strong>
+                    {% else %}
+                        Aucun résultat pour <strong>« {{ query }} »</strong>
+                    {% endif %}
+                </p>
+            {% endif %}
+            <div>
+                {% for user in results %}
+                <a href="{{ path('app_profil', {'id': user.id}) }}" >
+                    <div>
+                        <span class='classresult'>{{ user.username }}</span>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
-        </form>
-        {% if query %}
-            <p>
-                {% if results|length > 0 %}
-                    {{ results|length }} résultat{{ results|length > 1 ? 's' : '' }} pour
-                    <strong>« {{ query }} »</strong>
-                {% else %}
-                    Aucun résultat pour <strong>« {{ query }} »</strong>
-                {% endif %}
-            </p>
-        {% endif %}
-        <div>
-            {% for user in results %}
-            <a href="{{ path('app_profil', {'id': user.id}) }}" >
-                <div>
-                    <span class='classresult'>{{ user.username }}</span>
-                </div>
-            </a>
-            {% endfor %}
         </div>
     </div>
 </section>
