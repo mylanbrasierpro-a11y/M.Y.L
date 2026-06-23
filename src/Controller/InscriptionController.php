@@ -40,7 +40,7 @@ final class InscriptionController extends AbstractController
 
             $this->addFlash('success', 'Utilisateur ajouté avec succés !');
 
-            return $this->redirectToRoute('app_accueil');
+            return $this->redirectToRoute('app_login');
         }
         return $this->render('inscription/index.html.twig', [
             'inscription'=>$form->createView(),
